@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Morse Code - Webduino</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="http://webduino.io/components/webcomponentsjs/webcomponents.js"></script>
+    <link rel='import' href='http://webduino.io/components/webduino/web-arduino.html' />
+    <link rel='import' href='http://webduino.io/components/webduino/wa-led.html' />
+    <link rel="stylesheet" href="css/cover.css" />
+    <link rel="stylesheet" href="css/morseCode.css" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Morse Code</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="#">Morse Code</a></li>
+                  <li><a href="http://litsungyi.github.io/Enigma/">Enigma</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="inner cover">
+            <h1 class="cover-heading">Send Your <a href="https://en.wikipedia.org/wiki/Morse_code">Morse Code</a> to <a href="http://webduino.io/index.html">Webduino</a>.</h1>
+            <p class="lead">
+              <div class="form-inline form-group">
+                <label for="device">Device</label>
+                <input type="text" class="form-control" id="device" placeholder="Device" value="3KRZ">
+                <input type="button" id="connect" class="btn btn-lg btn-success" value="CONNECT">
+              </div>
+              <textarea id="message" class="form-control message" placeholder="Message">Calling all. This is our last cry before our eternal silence.</textarea>
+              <textarea id="morseCode" class="form-control morseCode" placeholder="Morse Code" readonly></textarea>
+              <input type="button" id="send" class="btn btn-lg btn-primary" value="SEND" disabled>
+            </p>
+            <p class="lead">
+              <div id="dit" class="btn btn-lg btn-default" disabled>Dit (.)</div>
+              <div id="dah" class="btn btn-lg btn-default" disabled>Dah (-)</div>
+            </p>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <web-arduino id="board" device="">
+      <wa-led id="led" pin="10"></wa-led>
+    </web-arduino>
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="js/morseCode.js"></script>
+  </body>
+</html>
