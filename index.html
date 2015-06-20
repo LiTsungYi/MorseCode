@@ -38,12 +38,20 @@
             <p class="lead">
               <div class="form-inline form-group">
                 <label for="device">Device</label>
-                <input type="text" class="form-control" id="device" placeholder="Device" value="3KRZ">
+                <input type="text" id="device" class="form-control" placeholder="Device" value="">
                 <input type="button" id="connect" class="btn btn-lg btn-success" value="CONNECT">
               </div>
+            </p>
+            <p class="lead">
+              <div id="notConnect" class="alert alert-danger" role="alert">Webduino not connect.</div>
+              <div id="connected" class="alert alert-success hidden" role="alert">Webduino connected.</div>
+            </p>
+            <p class="lead">
               <textarea id="message" class="form-control message" placeholder="Message">Calling all. This is our last cry before our eternal silence.</textarea>
               <textarea id="morseCode" class="form-control morseCode" placeholder="Morse Code" readonly></textarea>
-              <input type="button" id="send" class="btn btn-lg btn-primary" value="SEND" disabled>
+            </p>
+            <p class="lead">
+              <input type="button" id="send" class="btn btn-lg btn-primary" value="SEND">
             </p>
             <p class="lead">
               <div id="dit" class="btn btn-lg btn-default" disabled>Dit (.)</div>

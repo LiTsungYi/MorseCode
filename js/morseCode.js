@@ -10,12 +10,24 @@ var codes = { " ": " ",
   "(": "-.--.", ")": "-.--.-", "$": "...-..-", "&": ".-..." };
 
 window.addEventListener('WebComponentsReady', function () {
-  var setBtn = document.getElementById('connect');
   var device = document.getElementById('device');
   var board = document.getElementById('board');
   device.setAttribute('value', localStorage.device || "");
 
-  setBtn.addEventListener('click', function (e) {
+  $( "#send" ).on( 'click', function send() {
+    var message = "";
+    var text = $("#message").val().toUpperCase();
+    for ( var index in text ) {
+      var messageChar = text.charAt( index );
+      var code = codes[ messageChar ];
+      message += code;
+    }
+    $("#morseCode").val( message );
+    sendChar( message, 0 );
+  });
+  
+  var connect = document.getElementById('connect');
+  connect.addEventListener('click', function (e) {
     board.device = device.value;
     board.on('ready', ready);
     board.init();
@@ -28,19 +40,11 @@ window.addEventListener('WebComponentsReady', function () {
   }, false);
 });
 
+var connected = false;
 function ready() {
-  $( "#send" ).removeProp( "disabled" );
-  $( "#send" ).on( 'click', function send() {
-    var message = "";
-    var text = $("#message").val().toUpperCase();
-    for ( var index in text ) {
-      var messageChar = text.charAt( index );
-      var code = codes[ messageChar ];
-      message += code;
-    }
-    $("#morseCode").val( message );
-    sendChar( message, 0 );
-  });
+  connected = true;
+  $("#connected").removeClass("hidden");
+  $("#notConnect").addClass("hidden");
 }
 
 function sendChar( text, textIndex ) {
@@ -79,7 +83,9 @@ var led = document.getElementById('led');
 function ledOn( text, textIndex, delayOn, delayOff ) {
   if ( delayOn > 0 ) {
     console.log( "led on " + delayOn + "ms" );
-    led.on();
+    if ( connected ) {
+      led.on();
+    }
   }
   
   setTimeout( function() { ledOff( text, textIndex, delayOff ) }, delayOn );
@@ -91,7 +97,9 @@ function ledOff( text, textIndex, delayOff ) {
   $("#dit").removeClass("btn-danger");
   $("#dah").addClass("btn-default");
   $("#dah").removeClass("btn-danger");
-  led.off();
+  if ( connected ) {
+    led.off();
+  }
   
   setTimeout( function() { sendChar( text, textIndex ) }, delayOff );
 }
