@@ -39,6 +39,7 @@
               <div class="form-inline form-group">
                 <label for="device">Device</label>
                 <input type="text" id="device" class="form-control" placeholder="Device" value="">
+                <input type="text" id="led" class="form-control" placeholder="LED" value="">
                 <input type="button" id="connect" class="btn btn-lg btn-success" value="CONNECT">
               </div>
             </p>
@@ -72,7 +73,7 @@
     </div>
 
     <web-arduino id="board" device="">
-      <wa-led id="led" pin="10"></wa-led>
+      <wa-led id="led" pin=""></wa-led>
     </web-arduino>
   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
