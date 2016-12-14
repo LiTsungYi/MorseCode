@@ -11,8 +11,11 @@ var codes = { " ": " ",
 
 window.addEventListener('WebComponentsReady', function () {
   var device = document.getElementById('device');
+  var pin = document.getElementById('pin');
   var board = document.getElementById('board');
+  var led = document.getElementById('led');
   device.setAttribute('value', localStorage.device || "");
+  pin.setAttribute('value', localStorage.pin || "");
 
   $( "#send" ).on( 'click', function send() {
     var message = "";
@@ -29,10 +32,12 @@ window.addEventListener('WebComponentsReady', function () {
   var connect = document.getElementById('connect');
   connect.addEventListener('click', function (e) {
     board.device = device.value;
+    led.pin = pin.value;
     board.on('ready', ready);
     board.init();
 
     localStorage.device = device.value;
+    localStorage.pin = pin.value;
 
     e.stopPropagation();
     e.preventDefault();
